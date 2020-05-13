@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> <%= htmlWebpackPlugin.options.title %> </title>
+    <meta name="viewport" content="width=device-width,initial- scale=1"> 
+</head>
+<body style="background-color: gray">
+<form id="start_form">
+		<div id="checkboxes">
+			<p>Выберете операторы</p>
+		  <label for="plus">
+		    <input type="checkbox" id="plus" value="1" />+</label>
+		  <label for="minus">
+		    <input type="checkbox" id="minus" value="2" />-</label>
+		  <label for="mult">
+		    <input type="checkbox" id="mult" value="3" />*</label>
+		  <label for="div">
+		    <input type="checkbox" id="div" value="4" />/</label>
+    	</div>
+    	<p id="operators_warn"></p>
+		<p>Укажите диапазон чисел</p>
+		  <input type="text" placeholder="min" id="min">
+		  <p id="min_warn"></p>
+		  <input type="text" placeholder="max" id="max">
+		  <p id="max_warn"></p>
+		  <p>Установите время</p>
+		  <input type="text" id="time">
+		  <p id="time_warn"></p>
+		  <p>Укажите количество вопросов</p>
+		  <input type="text" id="amount">
+		  <p id='amount_warn'></p>
+		  <button type="button" id="start">start</button>
+		  <p id="start_warn"></p>
+	</form>
+	
+	<form id="askingForm" style="display: none" onkeypress="if(event.keyCode == 13) return false;">
+		<p id="example"></p>
+		<input id="usersAnswer" type="text">
+		<input type="button" id="submitAnswer">
+	</form>
+
+	<table id="resultTable" style="display: none">
+		<tr>
+			<th>Результат</th>
+			<th>Пример</th>
+			<th>Ответ</th>
+			<th>Время</th>
+		</tr>	
+	</table>
+	<button type="reset" id="goBack" style="display:none">Назад</button>
+				
+    <button type="button" id="showRecords">Показать историю</button>
+
+	<table id="recordsTable"  style="display:none">
+		<tr>
+			<th>№</th>
+			<th>Дата</th>
+			<th>Сложность</th>
+			<th>Баллы</th>
+			<th>Точность</th>
+		</tr>
+	</table>
+</html>
