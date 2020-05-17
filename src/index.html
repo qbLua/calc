@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> <%= htmlWebpackPlugin.options.title %> </title>
+    <meta name="viewport" content="width=device-width,initial- scale=1"> 
+    <style>
+    * {box-sizing: border-box;}
+body {background: #f69a73;}
+.decor {
+  position: relative;
+  max-width: 400px;
+  margin: 50px auto 0;
+  background: white;
+  border-radius: 30px;
+}
+
+.form-left-decoration,
+.form-right-decoration {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  background: #f69a73;
+  border-radius: 20px;
+}
+.form-left-decoration {
+  bottom: 60px;
+  left: -30px;
+}
+.form-right-decoration {
+  top: 60px;
+  right: -30px;
+}
+.form-left-decoration:before,
+.form-left-decoration:after,
+.form-right-decoration:before,
+.form-right-decoration:after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  border-radius: 30px;
+  background: white;
+}
+.form-left-decoration:before {top: -20px;}
+.form-left-decoration:after {
+  top: 20px;
+  left: 10px;
+}
+.form-right-decoration:before {
+  top: -20px;
+  right: 0;
+}
+.form-right-decoration:after {
+  top: 20px;
+  right: 10px;
+}
+.circle {
+  position: absolute;
+  bottom: 80px;
+  left: -55px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+}
+.form-inner {padding: 50px;}
+.form-inner input,
+.form-inner textarea {
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  background: #E9EFF6;
+  line-height: 40px;
+  border-width: 0;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  outline: none;
+}
+.form-inner input[type="button"] {
+  margin-top: 30px;
+  background: #f69a73;
+  border-bottom: 4px solid #d87d56;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+.form-inner input[type="button"]:hover {
+  background: #f6a37c;
+  border-bottom: 4px solid #cf8261;
+}
+
+.form-inner h3 {
+  margin-top: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  color: #707981;
+}
+#min, #max {
+  width: 140px;
+}
+#gridMinMax {
+  display: grid;
+  grid-template-columns: 140px 20px 140px;
+}
+#start {
+  font-size: 20px;
+}
+.checkbox-label {
+    display: block;
+    position: relative;
+    margin: auto;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 24px;
+    height: 24px;
+    width: 24px;
+    clear: both;
+}
+
+.checkbox-label input {
+    position: absolute;
+    opacity: 0;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.checkbox-label .checkbox-custom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 24px;
+    width: 24px;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    border: 2px solid #FFFFFF;
+}
+
+
+.checkbox-label input:checked ~ .checkbox-custom {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    -webkit-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+    opacity:1;
+    border: 2px solid #FFFFFF;
+
+}
+
+
+.checkbox-label .checkbox-custom::after {
+    position: absolute;
+    content: "";
+    left: 12px;
+    top: 12px;
+    height: 0px;
+    width: 0px;
+    border-radius: 5px;
+    border: solid #009BFF;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(0deg) scale(0);
+    -ms-transform: rotate(0deg) scale(0);
+    transform: rotate(0deg) scale(0);
+    opacity:1;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+
+}
+
+
+.checkbox-label input:checked ~ .checkbox-custom::after {
+  -webkit-transform: rotate(45deg) scale(1);
+  -ms-transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1);
+  opacity:1;
+  left: 8px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid #009BFF;
+  border-width: 0 2px 2px 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.checkbox-label .checkbox-custom::before {
+    position: absolute;
+    content: "";
+    left: 10px;
+    top: 10px;
+    width: 0px;
+    height: 0px;
+    border-radius: 5px;
+    border: 2px solid #FFFFFF;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);    
+}
+
+.checkbox-label input:checked ~ .checkbox-custom::before {
+    left: -3px;
+    top: -3px;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    -webkit-transform: scale(3);
+    -ms-transform: scale(3);
+    transform: scale(3);
+    opacity:0;
+    z-index: 999;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+}
+
+.checkbox-label .checkbox-custom.circular {
+    border-radius: 50%;
+    border: 2px solid #f69a73;
+}
+
+.checkbox-label input:checked ~ .checkbox-custom.circular {
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+}
+.checkbox-label input:checked ~ .checkbox-custom.circular::after {
+    border: solid #f69a73;
+    border-width: 0 2px 2px 0;
+}
+.checkbox-label .checkbox-custom.circular::after {
+    border-radius: 50%;
+}
+
+.checkbox-label .checkbox-custom.circular::before {
+    borinputder-radius: 50%;
+    border: 2px solid #FFFFFF;
+}  
+.operator_grid {
+  display: grid;
+  grid-template-columns: 100px 10px 40px 10px 40px 10px 40px 10px 40px;
+}
+.operator {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #707981;
+}
+.symbol {
+  font-size: 30px;
+}
+
+.form-table {
+  padding-bottom: 15px;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-top: 15px;
+}
+.form-table input,
+.form-table textarea {
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  background: #E9EFF6;
+  line-height: 40px;
+  border-width: 0;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  outline: none;
+}
+.form-table input[type="button"] {
+  margin-top: 0px;
+  background: #f69a73;
+  border-bottom: 4px solid #d87d56;
+  color: white;
+  font-size: 14px;
+}
+.form-table input[type="button"]:hover {
+  background: #f6a37c;
+  border-bottom: 4px solid #cf8261;
+}
+.form-table textarea {resize: none;}
+.form-table h3 {
+  margin-top: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  color: #707981;
+}
+#goBack {
+  display: block;
+  width: 20%;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  color: #f69a73;
+  line-height: 40px;
+  border-width: 0;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 0px;
+  background: #fff;
+  border-bottom: 4px solid #d87d56;
+  font-size: 24px;
+  outline: none;
+}
+#goBack:hover {
+  background: #fffbfa;
+  border-bottom: 4px solid #cf8261;
+  color: #f6a37c;
+}
+#askingForm {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+#askingForm input[type="text"] {
+  text-align:center;
+  font-size: 24px;
+  color: #707981;
+  width: 234px;
+  height: 30px;
+  margin-bottom: 22px;
+  background: #fff;
+  border: solid 2px;
+  border-color: #aeb3b8;
+  border-radius: 40px;
+  outline: none;
+}
+#askingForm input[type="button"]:hover {
+  background: #f6a37c;
+  border-bottom: 4px solid #cf8261;
+}
+#askingForm input[type="button"] {
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  background: #f69a73;
+  line-height: 40px;
+  border-width: 0;
+  border-radius: 20px;
+  border-bottom: 4px solid #d87d56;
+  color: white;
+  font-size: 24px;
+  outline: none;
+}
+#askingForm p {
+  text-align: center;
+  font-size: 34px;
+  margin: 10px;
+  font-family: 'Roboto', sans-serif;
+  color: #707981;
+}
+.table {
+  text-align: center;
+  color: #707981;
+  font-family: 'Roboto', sans-serif;  
+  border-spacing: 0px; 
+}
+.table th{
+  border: solid 2px;
+}
+.table td{
+  border: solid 1px; 
+} 
+.table tr:hover {
+background: #ffeee7;
+}
+.table td:hover {
+background: #ffccb8;
+}
+#recordsTable {
+  padding-left: 30px;
+  padding-bottom: 30px;
+}
+.result-decor {
+  display: flex;
+  justify-content: center;
+}
+
+#start_form input[type="text"] {
+  text-align: center;
+  font-size: 45px;
+  color: #707981;
+}
+.warn div{
+  background-color: #fc7e5d;
+  padding: 5px;  
+  color: #fff;
+  border-left: solid 5px #f07453;
+  border-bottom: solid 5px #f07453;
+  border-radius: 6px;
+}
+
+
+    </style>
+</head>
+<body>
+  <button type="reset" id="goBack" style="display:none">Главное меню</button>
+
+<form id="start_form" class="decor" style="display: block">
+  <div class="form-left-decoration"></div>
+  <div class="form-right-decoration"></div>
+  <div class="circle"></div>
+  
+  <div class="form-inner">
+    <h3>Установите настройки</h3>
+
+    <div id="checkboxes" class="operator_grid">
+    <div><span class="operator" id="operators_warn">Выберите операторы</span></div> <div><span class="operator symbol">+</span></div>
+    <div>
+      <label for="plus" class="checkbox-label">
+        <input id="plus" type="checkbox" value="1">
+        <span class="checkbox-custom circular"></span>
+      </label> 
+    </div>
+    <div><span class="operator symbol">-</span></div>
+    <div>
+      <label for="minus" class="checkbox-label">
+        <input id="minus" type="checkbox" value="2">
+        <span class="checkbox-custom circular"></span>
+      </label>
+    </div>
+    <div><span class="operator symbol">*</span></div>
+    <div>
+      <label for="mult" class="checkbox-label">
+        <input id="mult" type="checkbox" value="3">
+        <span class="checkbox-custom circular"></span>
+      </label>
+    </div>
+    <div><span class="operator symbol">/</span></div>
+    <div>
+      <label for="div" class="checkbox-label">
+        <input id="div" input="div" type="checkbox" value="4">
+        <span class="checkbox-custom circular"></span>
+      </label>     
+    </div> 
+  </div> <br>
+
+  <div id="gridMinMax">
+    <div>
+        <input id="min" placeholder="От">
+        <span class="warn" id="min_warn" style="display: none"><div>Минимальное значение введено некорректно</div><br></span>  
+    </div>
+    <div></div>
+    <div>
+        <input id="max" placeholder="До">
+<span class="warn" id="max_warn" style="display: none"><div>Максимальное значение введено некорректно</div><br></span>  
+    </div>
+  </div>
+    <input id="time" placeholder="Время на ответ">
+    <span class="warn" id="time_warn" style="display: none"><div>Максимальное значение введено некорректно</div><br></span> 
+    <input id="amount" placeholder="Количество заданий">
+    <span class="warn" id="amount_warn" style="display: none"><div>Максимальное значение введено некорректно</div><br></span> 
+    <input id="start" type="button" value="Начать">
+  </div>
+      <p id="start_warn"></p>
+  </div>
+  </form>
+  
+
+  <div class="decor">
+
+  <form id="askingForm" style="display: none" onkeypress="if(event.keyCode == 13) return false;">
+    <div ><p id="example"></p>
+    <input id="usersAnswer" type="text"><br>
+    <input type="button" id="submitAnswer" value="Ответить"></div>   
+  </form>    
+  </div>
+<div class="decor result-decor">
+ <table id="resultTable" class="form-table table" style="display: none">
+    <tr>
+      <th>Результат</th>
+      <th>Пример</th>
+      <th>Ответ</th>
+      <th>Время</th>
+    </tr> 
+  </table>
+</div>
+    <div class="decor">
+      <div class="form-table" id="recordsDiv">
+            <input id="showRecords" type="button" value="Показать историю">
+      </div>
+      <table id="recordsTable" class="table" style="display:none">
+    <tr>
+      <th>№</th>
+      <th>Дата</th>
+      <th>Сложность</th>
+      <th>Баллы</th>
+      <th>Точность</th>
+    </tr>
+  </table>
+  </div>   
+</body>
+</html>
