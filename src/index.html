@@ -406,6 +406,15 @@ background: #ffccb8;
   border-bottom: solid 5px #f07453;
   border-radius: 6px;
 }
+#result-title {
+  text-align: center;
+  padding: 10px;
+  color: #707981;
+  font-family: 'Roboto', sans-serif;  
+}
+#forminner input[type="text"] {
+  color: #707981;
+}
 
 
     </style>
@@ -464,15 +473,14 @@ background: #ffccb8;
     </div>
   </div>
     <input id="time" placeholder="Время на ответ">
-    <span class="warn" id="time_warn" style="display: none"><div>Максимальное значение введено некорректно</div><br></span> 
+    <span class="warn" id="time_warn" style="display: none"><div>Время введено некорректно</div><br></span> 
     <input id="amount" placeholder="Количество заданий">
-    <span class="warn" id="amount_warn" style="display: none"><div>Максимальное значение введено некорректно</div><br></span> 
+    <span class="warn" id="amount_warn" style="display: none"><div>Количество вопросов введено некорректно</div><br></span> 
     <input id="start" type="button" value="Начать">
   </div>
       <p id="start_warn"></p>
   </div>
   </form>
-  
 
   <div class="decor">
 
@@ -482,6 +490,7 @@ background: #ffccb8;
     <input type="button" id="submitAnswer" value="Ответить"></div>   
   </form>    
   </div>
+<h2 class="decor" id="result-title" style="display: none">Результаты</h2>
 <div class="decor result-decor">
  <table id="resultTable" class="form-table table" style="display: none">
     <tr>

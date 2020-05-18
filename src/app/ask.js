@@ -48,6 +48,8 @@ export function askNext ( i, example, examplesArray, resultArray, time, totalSco
 }
 
 export function resultTable ( resultArray ) {
+	document.getElementById('askingForm').style.display = 'none';
+	document.getElementById('result-title').style.display = 'block';
 	let table = document.getElementById('resultTable');
 	table.style.display = 'block';
 	for ( let i = 0; i < resultArray.length; i++) {

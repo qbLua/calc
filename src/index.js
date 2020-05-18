@@ -3,7 +3,6 @@ import { generate, generateNext, randomInteger, createExampleValue, createExampl
 import { beginAsking, askNext, resultTable } from './app/ask';
 import { recordsSave, updateRecords, showRecords } from './app/records';
 
-
 document.getElementById('start').onclick = start;
 document.getElementById('showRecords').onclick = showRecords;
 document.getElementById('goBack').onclick = goBack;
